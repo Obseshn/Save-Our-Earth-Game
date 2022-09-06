@@ -5,24 +5,23 @@ using UnityEngine;
 public class Attacker : MonoBehaviour
 {
     [SerializeField] private int damage;
-    protected CosmicObjectsRotator cosmicObjectsRotator;
     protected HealthSystem healthSystem;
     protected float moveSpeed;
-    private readonly int minMoveSpeed = 1;
+    [SerializeField] private int minMoveSpeed = 1;
 
 
     private void Start()
     {
-        cosmicObjectsRotator = GetComponent<CosmicObjectsRotator>();
-
-        
+        healthSystem = new HealthSystem(Random.Range(2, 6));
         healthSystem.OnObjectDied += DestroyAttacker;
         healthSystem.OnObjectTakenDamage += OnTakeDamageBehaviour;
-        
+
         moveSpeed = Random.Range(minMoveSpeed, minMoveSpeed * 3);
     }
+
     public virtual void MoveToTheWorldCenter()
     {
+        Debug.Log(transform.name + " is moving to the center! " + "Speed : " + moveSpeed);
         transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, moveSpeed * Time.deltaTime);
     }
 
@@ -35,13 +34,11 @@ public class Attacker : MonoBehaviour
         Debug.Log(transform.name + " has been destroyed!");
         Destroy(gameObject);
     }
-    private void Update()
-    {
-        MoveToTheWorldCenter();
-    }
+    
 
     private void OnMouseDown()
     {
+        Debug.Log("Player hits attacker!");
         healthSystem.TakeDamage(1);
     }
 

@@ -8,9 +8,8 @@ public class UFO : Attacker
     [SerializeField] private UFOBullet bullet;
     private float timeBetweenShootInSec = 0.25f;
 
-    private void Start()
+    private void OnEnable()
     {
-        healthSystem = new HealthSystem(Random.Range(2, 6));
         StartCoroutine(ActiveShooting());
     }
 
@@ -23,11 +22,11 @@ public class UFO : Attacker
         StartCoroutine(ActiveShooting());
     }
 
-    void Update()
+    private void Update()
     {
-        cosmicObjectsRotator.RotateObjectYAxis();
+        MoveToTheWorldCenter();
+        
     }
-
     private void Shoot()
     {
         StartCoroutine(ShootBehaviour());

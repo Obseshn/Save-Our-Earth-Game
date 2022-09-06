@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Asteroid : Attacker
 {
+    [SerializeField] protected CosmicObjectsRotator cosmicObjectsRotator;
+
     private float sizeOfAsteroid;
     public Asteroid(float size)
     {
         sizeOfAsteroid = size;
         healthSystem.currentHealth = (int)(size);
     }
-    
+
     private void Update()
     {
         cosmicObjectsRotator.RotateObjectAllAxis();
+        MoveToTheWorldCenter();
     }
 
     protected override void DestroyAttacker()

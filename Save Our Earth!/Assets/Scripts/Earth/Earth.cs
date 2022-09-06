@@ -37,6 +37,7 @@ public class Earth : MonoBehaviour
         if (other.GetComponent<Attacker>())
         {
             healthSystem.TakeDamage(1);
+            Destroy(other);
         }
     }
 
