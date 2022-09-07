@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  minMoveSpeed: 0.25
   cosmicObjectsRotator: {fileID: 1707267603185931879}
-  minMoveSpeed: 1
 --- !u!114 &1707267603185931879
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,4 +20,9 @@ public class CosmicObjectsRotator : MonoBehaviour
     {
         transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
     }
+
+    public void RotateObjectZAxis()
+    {
+        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+    }
 }

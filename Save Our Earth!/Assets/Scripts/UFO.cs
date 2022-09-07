@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class UFO : Attacker
 {
-    private float shootCD = 3f;
+    [SerializeField] private CosmicObjectsRotator cosmicObjectsRotator;
     [SerializeField] private UFOBullet bullet;
-    private float timeBetweenShootInSec = 0.25f;
+
+    private float shootCD = 5f;
+    private float timeBetweenShootInSec = 0.6f;
+    
 
     private void OnEnable()
     {
-        StartCoroutine(ActiveShooting());
+       /* StartCoroutine(ActiveShooting());*/
+        transform.LookAt(FindObjectOfType<Earth>().transform); // !!!
     }
 
     IEnumerator ActiveShooting()
@@ -25,7 +29,7 @@ public class UFO : Attacker
     private void Update()
     {
         MoveToTheWorldCenter();
-        
+        cosmicObjectsRotator.RotateObjectZAxis();
     }
     private void Shoot()
     {
@@ -34,8 +38,9 @@ public class UFO : Attacker
 
     private void SpawnNewBullet()
     {
-        UFOBullet newBullet = Instantiate(bullet);
-        newBullet.ChangeMovespeed(moveSpeed + 1f);
+        UFOBullet newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+        newBullet.ChangeMovespeed(moveSpeed + 2f);
+        Debug.Log("New bullet exist!");
     }
     IEnumerator ShootBehaviour()
     {

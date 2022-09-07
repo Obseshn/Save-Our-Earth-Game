@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Asteroid : Attacker
 {
-    [SerializeField] protected CosmicObjectsRotator cosmicObjectsRotator;
+    [SerializeField] private CosmicObjectsRotator cosmicObjectsRotator;
 
-    private float sizeOfAsteroid;
+    private float sizeOfAsteroid = 3f;
     public Asteroid(float size)
     {
-        sizeOfAsteroid = size;
-        healthSystem.currentHealth = (int)(size);
+        sizeOfAsteroid = size;   
     }
 
     private void Update()
@@ -21,7 +20,18 @@ public class Asteroid : Attacker
 
     protected override void DestroyAttacker()
     {
-        if (sizeOfAsteroid <= 1)
+        Debug.Log("Size of asteroid: " + sizeOfAsteroid);
+        if (sizeOfAsteroid == 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                /*Asteroid newAsteroid = new Asteroid(Random.Range(3 - 1f, 3 - 0.5f));*/
+                Asteroid newAsteroid = Instantiate(this, transform.position, Quaternion.identity);
+                newAsteroid.sizeOfAsteroid = Random.Range(sizeOfAsteroid - 1f, sizeOfAsteroid - 0.5f);
+                Debug.Log("Child of asteroid created!");
+            }
+        }
+        else if (sizeOfAsteroid <= 1)
         {
             base.DestroyAttacker();
         }
@@ -29,7 +39,9 @@ public class Asteroid : Attacker
         {
             for (int i = 0; i < sizeOfAsteroid; i++)
             {
-                Instantiate(new Asteroid(Random.Range(sizeOfAsteroid - 1f, sizeOfAsteroid - 0.5f)));
+                Asteroid newAsteroid = Instantiate(this, transform.position, Quaternion.identity);
+                newAsteroid.sizeOfAsteroid = sizeOfAsteroid - 1f;
+                Debug.Log("Child of asteroid created!");
             }
         }
     }

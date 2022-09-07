@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 191634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.78, y: -1.36, z: 2.62}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 417102}
@@ -126,11 +126,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191634}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.728751, y: 0.55610216, z: 2.344726}
-  m_Center: {x: 0.007579446, y: 0.023703516, z: -0.119386435}
+  m_Size: {x: 1.728751, y: 0.20896125, z: 2.344726}
+  m_Center: {x: 0.007579446, y: 0.0031113625, z: -0.119386435}
 --- !u!114 &8516544316897087962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  minMoveSpeed: 1
   cosmicObjectsRotator: {fileID: -63658485768504344}
   bullet: {fileID: 7330161299829761960, guid: 9bf9f6a4051e7914e9019c38901a299d, type: 3}
 --- !u!114 &-63658485768504344

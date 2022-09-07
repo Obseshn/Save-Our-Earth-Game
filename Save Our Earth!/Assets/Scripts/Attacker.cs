@@ -7,7 +7,7 @@ public class Attacker : MonoBehaviour
     [SerializeField] private int damage;
     protected HealthSystem healthSystem;
     protected float moveSpeed;
-    [SerializeField] private int minMoveSpeed = 1;
+    [SerializeField] private float minMoveSpeed = 1;
 
 
     private void Start()
