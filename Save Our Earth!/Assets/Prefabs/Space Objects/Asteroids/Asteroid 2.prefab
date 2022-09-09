@@ -163,7 +163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   minMoveSpeed: 0.25
+  sizeOfAttacker: 2
   cosmicObjectsRotator: {fileID: 1707267603185931879}
+  sizeOfAsteroid: 0
 --- !u!114 &1707267603185931879
 MonoBehaviour:
   m_ObjectHideFlags: 0

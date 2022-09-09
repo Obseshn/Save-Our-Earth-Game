@@ -6,15 +6,17 @@ public class UFO : Attacker
 {
     [SerializeField] private CosmicObjectsRotator cosmicObjectsRotator;
     [SerializeField] private UFOBullet bullet;
-
+    /*[SerializeField] private float minSize = 1f;*/
     private float shootCD = 5f;
     private float timeBetweenShootInSec = 0.6f;
     
 
     private void OnEnable()
     {
-       /* StartCoroutine(ActiveShooting());*/
+        /* StartCoroutine(ActiveShooting());*/
+        healthSystem = new HealthSystem(Random.Range(2, 6));
         transform.LookAt(FindObjectOfType<Earth>().transform); // !!!
+        transform.localScale = SizeChanger.GetRandomChangeSize(minSizeOfAttacker, minSizeOfAttacker * 2) + new Vector3(0, 5, 0);
     }
 
     IEnumerator ActiveShooting()

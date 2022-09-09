@@ -8,11 +8,12 @@ public class Attacker : MonoBehaviour
     protected HealthSystem healthSystem;
     protected float moveSpeed;
     [SerializeField] private float minMoveSpeed = 1;
+    [SerializeField] protected float minSizeOfAttacker;
 
-
+    
     private void Start()
     {
-        healthSystem = new HealthSystem(Random.Range(2, 6));
+
         healthSystem.OnObjectDied += DestroyAttacker;
         healthSystem.OnObjectTakenDamage += OnTakeDamageBehaviour;
 

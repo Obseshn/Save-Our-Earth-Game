@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class Earth : MonoBehaviour
 {
+    [SerializeField] private Material catastropheMaterial;
+    [SerializeField] private CatastropheCounter catastropheCounter;
+
     private HealthSystem healthSystem;
     private CosmicObjectsRotator cosmicObjectsRotator;
-    [SerializeField] private CatastropheCounter catastropheCounter;
+    
     private bool isOnCatastrophe = false;
+    private MeshRenderer earthMeshRenderer;
+    private Material[] defaultMaterials;
+    
+
     private void Start()
     {
         cosmicObjectsRotator = GetComponent<CosmicObjectsRotator>();
@@ -16,7 +23,10 @@ public class Earth : MonoBehaviour
         healthSystem.OnObjectDied += DestroyPlanet;
         healthSystem.OnObjectTakenDamage += OnTakeDamageBehaviour;
 
-        catastropheCounter.OnCatastropheReady += MakeCatastrophe; 
+        catastropheCounter.OnCatastropheReady += MakeCatastrophe;
+
+        earthMeshRenderer = GetComponentInChildren<MeshRenderer>();
+        defaultMaterials = earthMeshRenderer.materials;
     }
 
     private void Update()
@@ -49,6 +59,7 @@ public class Earth : MonoBehaviour
             if (randomTrueOrFalse == 1)
             {
                 isOnCatastrophe = false;
+                earthMeshRenderer.materials = defaultMaterials;
                 Debug.Log("Catastrophe has been stopped!");
             }
         }
@@ -57,6 +68,11 @@ public class Earth : MonoBehaviour
     private void MakeCatastrophe()
     {
         isOnCatastrophe = true;
+
+        Color randomColor = new Color(Random.Range(0,1f), Random.Range(0, 1f),/*blue: */  0, Random.Range(0, 1f)); // 3rd is zero because it's default color of earth
+        catastropheMaterial.color = randomColor;
+
+        earthMeshRenderer.material = catastropheMaterial;
         StartCoroutine(CatastropheDelay(5));
     }
 
@@ -66,7 +82,7 @@ public class Earth : MonoBehaviour
         yield return new WaitForSeconds(delayTimeInSec);
         if (isOnCatastrophe)
         {
-            healthSystem.TakeDamage(1);
+            healthSystem.TakeDamage(10);
         }
     }
     private void OnDisable()

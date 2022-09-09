@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("SpawnRandomAttacker", spawnTime, spawnTime);
+        InvokeRepeating("SpawnRandomAttacker", spawnTime + Random.Range(0, 3f), Random.Range(spawnTime, spawnTime * 2));
     }
     private void SpawnRandomAttacker()
     {

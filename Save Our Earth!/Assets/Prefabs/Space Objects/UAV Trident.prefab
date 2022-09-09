@@ -145,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   minMoveSpeed: 1
+  minSizeOfAttacker: 3
   cosmicObjectsRotator: {fileID: -63658485768504344}
   bullet: {fileID: 7330161299829761960, guid: 9bf9f6a4051e7914e9019c38901a299d, type: 3}
 --- !u!114 &-63658485768504344

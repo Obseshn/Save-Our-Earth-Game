@@ -24,7 +24,7 @@ public class HealthSystem
             return;
         }
 
-        OnObjectTakenDamage?.Invoke();
+        OnObjectTakenDamage?.Invoke(); 
         currentHealth -= amountOfDamage;
     }
 

@@ -6,6 +6,7 @@ public class UFOBullet : Attacker
 {
     private void OnEnable()
     {
+        healthSystem = new HealthSystem(Random.Range(2, 6));
         transform.LookAt(FindObjectOfType<Earth>().transform); // !!!
     }
     public void ChangeMovespeed(float newMovespeed)
