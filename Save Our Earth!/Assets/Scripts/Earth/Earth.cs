@@ -19,7 +19,7 @@ public class Earth : MonoBehaviour
     {
         cosmicObjectsRotator = GetComponent<CosmicObjectsRotator>();
 
-        healthSystem = new HealthSystem(10);
+        healthSystem = new HealthSystem(100000);
         healthSystem.OnObjectDied += DestroyPlanet;
         healthSystem.OnObjectTakenDamage += OnTakeDamageBehaviour;
 

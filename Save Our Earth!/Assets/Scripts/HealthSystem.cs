@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
 
 public class HealthSystem
 {
-    private int maxHealth;
+    public int maxHealth;
     public int currentHealth;
 
     public Action OnObjectDied;

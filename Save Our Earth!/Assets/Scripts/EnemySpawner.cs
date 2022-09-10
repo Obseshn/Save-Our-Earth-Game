@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Attacker[] attackers;
+    [SerializeField] private GameObject[] attackers;
 
     [SerializeField] private float maxSpawnRangeDistance = 10f;
     private float spawnTime = 3f;

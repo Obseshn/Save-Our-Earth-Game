@@ -12,11 +12,6 @@ public class Asteroid : Attacker
     {
         healthSystem = new HealthSystem(Random.Range(2, 6));
     }
-    public Asteroid(float size)
-    {
-        
-    }
-
     private void ChangeStagesOfAsteroid(float size)
     {
         if (size < 1)
