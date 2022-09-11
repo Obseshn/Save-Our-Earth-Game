@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Attacker : MonoBehaviour
 {
@@ -9,18 +8,14 @@ public class Attacker : MonoBehaviour
     protected float moveSpeed;
     [SerializeField] private float minMoveSpeed = 1;
     [SerializeField] protected float minSizeOfAttacker;
-    [SerializeField] private HealthBar healthBar;
-
+    public static Action OnAttackerDied;
     
     private void Start()
     {
         healthSystem.OnObjectDied += DestroyAttacker;
         healthSystem.OnObjectTakenDamage += OnTakeDamageBehaviour;
-
-        healthBar.SetTarget(transform);
-        healthBar.SetMaxHealth(healthSystem.maxHealth);
         
-        moveSpeed = Random.Range(minMoveSpeed, minMoveSpeed * 3);
+        moveSpeed = UnityEngine.Random.Range(minMoveSpeed, minMoveSpeed * 3);
     }
 
     public virtual void MoveToTheWorldCenter()
@@ -32,10 +27,10 @@ public class Attacker : MonoBehaviour
     protected virtual void OnTakeDamageBehaviour()
     {
         Debug.Log(transform.name + " taken damage!");
-        healthBar.SetHealth(healthSystem.currentHealth);
     }
     protected virtual void DestroyAttacker()
     {
+        OnAttackerDied?.Invoke();
         Debug.Log(transform.name + " has been destroyed!");
         Destroy(gameObject);
     }

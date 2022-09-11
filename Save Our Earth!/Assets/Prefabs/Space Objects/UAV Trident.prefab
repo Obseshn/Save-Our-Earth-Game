@@ -126,7 +126,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191634}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.728751, y: 0.20896125, z: 2.344726}
@@ -146,7 +146,6 @@ MonoBehaviour:
   damage: 1
   minMoveSpeed: 1
   minSizeOfAttacker: 3
-  healthBar: {fileID: 0}
   cosmicObjectsRotator: {fileID: -63658485768504344}
   bullet: {fileID: 7330161299829761960, guid: 9bf9f6a4051e7914e9019c38901a299d, type: 3}
 --- !u!114 &-63658485768504344
