@@ -81,14 +81,17 @@ public class Earth : MonoBehaviour
     
     private void MakeCatastrophe()
     {
-        OnCatastropheStartedOrFinished?.Invoke();
-        isOnCatastrophe = true;
+        if (!isOnCatastrophe!)
+        {
+            OnCatastropheStartedOrFinished?.Invoke();
+            isOnCatastrophe = true;
 
-        Color randomColor = new Color(UnityEngine.Random.Range(0,1f), UnityEngine.Random.Range(0, 1f),/*blue: */  0, UnityEngine.Random.Range(0, 1f)); // 3rd is zero because it's default color of earth water
-        catastropheMaterial.color = randomColor;
+            Color randomColor = new Color(UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f),/*blue: */  0, UnityEngine.Random.Range(0, 1f)); // 3rd is zero because it's default color of earth water
+            catastropheMaterial.color = randomColor;
 
-        earthMeshRenderer.material = catastropheMaterial;
-        StartCoroutine(CatastropheDelay(5));
+            earthMeshRenderer.material = catastropheMaterial;
+            StartCoroutine(CatastropheDelay(5));
+        }
     }
 
     IEnumerator CatastropheDelay(float delayTimeInSec)

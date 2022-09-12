@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Text earthHealthText;
 
     [SerializeField] private Image catastropheMenu;
+    private Earth earth;
 
     private void Start()
     {
@@ -19,7 +20,7 @@ public class UIController : MonoBehaviour
 
         OnAddScore += ChangeScoreText;
 
-        Earth earth = FindObjectOfType<Earth>();
+        earth = FindObjectOfType<Earth>();
         earth.OnCatastropheStartedOrFinished += ShowOrHideCatastropheMenu;
         earth.OnEarthTakenDamage += ChangeEarthHealthText;
         earthHealthText.text = earth.GetEarthStartHealth().ToString();
@@ -32,6 +33,7 @@ public class UIController : MonoBehaviour
     public static void AddScore()
     {
         scoreCounter += 1;
+        Debug.Log("Add score exist!");
         OnAddScore?.Invoke(scoreCounter);
     }
 
@@ -47,11 +49,12 @@ public class UIController : MonoBehaviour
 
     private void OnDisable()
     {
+        Attacker.OnAttackerDied -= AddScore;
+
         OnAddScore -= ChangeScoreText;
-        Earth earth = FindObjectOfType<Earth>();
+
         earth.OnEarthTakenDamage -= ChangeEarthHealthText;
         earth.OnCatastropheStartedOrFinished -= ShowOrHideCatastropheMenu;
-        earth.OnEarthTakenDamage -= ChangeEarthHealthText;
     }
 
     private void ShowOrHideCatastropheMenu()
@@ -69,5 +72,10 @@ public class UIController : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

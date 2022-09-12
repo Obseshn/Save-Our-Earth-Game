@@ -13,9 +13,9 @@ public class UFO : Attacker
 
     private void OnEnable()
     {
-        /* StartCoroutine(ActiveShooting());*/
+
         healthSystem = new HealthSystem(Random.Range(2, 6));
-        transform.LookAt(FindObjectOfType<Earth>().transform); // !!!
+        transform.LookAt(GameObject.FindGameObjectWithTag("Earth").transform); // !!!
         transform.localScale = SizeChanger.GetRandomChangeSize(minSizeOfAttacker, minSizeOfAttacker * 2) + new Vector3(0, 5, 0); // last Vector is offset
     }
 
