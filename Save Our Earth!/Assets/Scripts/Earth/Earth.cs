@@ -10,8 +10,8 @@ public class Earth : MonoBehaviour
     [SerializeField] private Material catastropheMaterial;
     [SerializeField] private CatastropheCounter catastropheCounter;
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private int startEarthHealth = 30;    
-
+    [SerializeField] private int startEarthHealth = 30;
+    [SerializeField] private AudioClip catastropheClip;
 
     private HealthSystem healthSystem;
     private CosmicObjectsRotator cosmicObjectsRotator;
@@ -83,6 +83,7 @@ public class Earth : MonoBehaviour
     {
         if (!isOnCatastrophe!)
         {
+            SoundManager.Instance.PlaySound(catastropheClip);
             OnCatastropheStartedOrFinished?.Invoke();
             isOnCatastrophe = true;
 
