@@ -95,7 +95,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.26696318, b: 0, a: 1}
+      key0: {r: 0.9960785, g: 0.48627454, b: 0.37647063, a: 1}
       key1: {r: 1, g: 0.75860286, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -242,6 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e87016ece6cdfa8438d411a85093dfb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSound: {fileID: 8300000, guid: fb69ae42ea1ca594d918b6f5c32899cc, type: 3}
   damage: 1
   minMoveSpeed: 2
   minSizeOfAttacker: 2.5
+  onMouseDownSound: {fileID: 8300000, guid: de7253a13f14cfd4ca09a222ef4d60aa, type: 3}
+  destroyParticle: {fileID: 198267365771992106, guid: 2dc5347a44240ea4597cafb2d1d7c160, type: 3}

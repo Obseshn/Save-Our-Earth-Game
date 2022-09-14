@@ -8,8 +8,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float maxSpawnRangeDistance = 10f;
     private float difficultyCounter;
-    private readonly float minimumSpawnTime;
-    private float spawnTime = 3f;
+    private readonly float minimumSpawnTime = 1;
     private float timeBetweenSpawnEnemy = 4f;
 
     private void Start()

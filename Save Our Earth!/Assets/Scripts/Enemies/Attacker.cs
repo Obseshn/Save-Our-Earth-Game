@@ -3,12 +3,15 @@ using System;
 
 public class Attacker : MonoBehaviour
 {
+    [SerializeField] protected AudioClip deathSound;
     [SerializeField] private int damage;
     protected HealthSystem healthSystem;
     protected float moveSpeed;
     [SerializeField] private float minMoveSpeed = 1;
     [SerializeField] protected float minSizeOfAttacker;
     public static Action OnAttackerDied;
+    [SerializeField] private AudioClip onMouseDownSound;
+    [SerializeField] private ParticleSystem destroyParticle;
     
     private void Start()
     {
@@ -31,7 +34,10 @@ public class Attacker : MonoBehaviour
     protected virtual void DestroyAttacker()
     {
         OnAttackerDied?.Invoke();
+        destroyParticle.Play();
+        Instantiate(destroyParticle, transform.position, Quaternion.identity);
         Debug.Log(transform.name + " has been destroyed!");
+        SoundManager.Instance.PlaySound(deathSound);
         Destroy(gameObject);
     }
     
@@ -39,6 +45,7 @@ public class Attacker : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Player hits attacker!");
+        SoundManager.Instance.PlayUISound(onMouseDownSound);
         healthSystem.TakeDamage(1);
     }
 

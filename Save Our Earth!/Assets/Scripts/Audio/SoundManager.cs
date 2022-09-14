@@ -49,7 +49,11 @@ public class SoundManager : MonoBehaviour
 
     public void PlayButtonSound()
     {
-        uiSource.PlayOneShot(onButtonPressedSound);
-        
+        uiSource.PlayOneShot(onButtonPressedSound);   
+    }
+
+    public void PlayUISound(AudioClip clip)
+    {
+        uiSource.PlayOneShot(clip);
     }
 }

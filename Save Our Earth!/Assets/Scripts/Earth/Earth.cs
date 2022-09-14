@@ -20,7 +20,7 @@ public class Earth : MonoBehaviour
     private MeshRenderer earthMeshRenderer;
     private Material[] defaultMaterials;
 
-    private readonly int catastropheDamage = 10;
+    private readonly int catastropheDamage  = 3;
     
     
     private void Start()

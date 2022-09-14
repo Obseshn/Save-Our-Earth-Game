@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -8,7 +7,7 @@ public class CatastropheCounter : MonoBehaviour
     public Action OnCatastropheReady;
 
     private float timeToCatastrophe;
-    private readonly float minCatastropheCoolDown = 8f;
+    private readonly float minCatastropheCoolDown = 10f;
 
    
     private void Start()

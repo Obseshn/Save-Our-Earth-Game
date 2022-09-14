@@ -119,9 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a70ec5e646d9c448c5690b07427511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSound: {fileID: 8300000, guid: b584a475a00deef4cb9ece1ed6e116d2, type: 3}
   damage: 1
   minMoveSpeed: 0.6
   minSizeOfAttacker: 0.5
+  onMouseDownSound: {fileID: 8300000, guid: de7253a13f14cfd4ca09a222ef4d60aa, type: 3}
+  destroyParticle: {fileID: 198694502634222740, guid: b3d8264aa7d2d824a8a503e45291ddf4, type: 3}
   cosmicObjectsRotator: {fileID: 8077299841149964705}
 --- !u!114 &8077299841149964705
 MonoBehaviour:
