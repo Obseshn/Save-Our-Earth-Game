@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class ColorPickerTriangle : MonoBehaviour {
+    public static ColorPickerTriangle Instance;
+
 
     [SerializeField] private Camera cameraPrefab;
     private Camera mainMenuCam;
@@ -31,6 +33,20 @@ public class ColorPickerTriangle : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(Instance);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
         float h, s, v;
         Color.RGBToHSV(TheColor, out h, out s, out v);
         //Debug.Log("HSV = " + v.ToString() + "," + h.ToString() + "," + v.ToString() + ", color = " + TheColor.ToString());
@@ -38,14 +54,10 @@ public class ColorPickerTriangle : MonoBehaviour {
         RPoints = new Vector3[3];
         SetTrianglePoints();
         TMesh = Triangle.GetComponent<MeshFilter>().mesh;
-        
-    }
-
-    private void Start()
-    {
         mainMenuCam = FindObjectOfType<Camera>();
         SetNewColor(TheColor);
     }
+
 
 
     // Update is called once per frame
@@ -199,7 +211,7 @@ public class ColorPickerTriangle : MonoBehaviour {
         RPoints[2] = new Vector3(-s, -c, 0) * TRadius;
     }
 
-    private void ChangeBGColor(Color newColor)
+    public void ChangeBGColor(Color newColor)
     {
         cameraBGColor = newColor;
         cameraPrefab.backgroundColor = cameraBGColor;

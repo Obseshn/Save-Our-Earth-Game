@@ -31,7 +31,7 @@ public class Attacker : MonoBehaviour
     {
         Debug.Log(transform.name + " taken damage!");
     }
-    protected virtual void DestroyAttacker()
+    public virtual void DestroyAttacker()
     {
         OnAttackerDied?.Invoke();
         destroyParticle.Play();

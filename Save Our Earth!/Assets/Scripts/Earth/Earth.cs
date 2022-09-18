@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using UnityEngine;
+using YG;
 
 public class Earth : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Earth : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private int startEarthHealth = 30;
     [SerializeField] private AudioClip catastropheClip;
+    [SerializeField] private GameObject gameoverMenu;
 
     private HealthSystem healthSystem;
     private CosmicObjectsRotator cosmicObjectsRotator;
@@ -49,10 +51,33 @@ public class Earth : MonoBehaviour
         OnEarthTakenDamage?.Invoke(healthSystem.currentHealth);
         healthBar.SetHealth(healthSystem.currentHealth);
     }
+
+    private void CheckMaxScore()
+    {
+        int currentMaxScore = YandexGame.savesData.playerMaxScore;
+        if (currentMaxScore < FindObjectOfType<UIController>().GetScore())
+        {
+            YandexGame.savesData.playerMaxScore = FindObjectOfType<UIController>().GetScore();
+            YandexGame.NewLeaderboardScores("Best Players", FindObjectOfType<UIController>().GetScore());
+            YandexGame.SaveProgress();
+        }
+    }
+
+
     protected virtual void DestroyPlanet()
     {
-        Debug.Log("Earth has been destroyed! You lose!");
+        Time.timeScale = 0;
+        gameoverMenu.SetActive(true);
+
+        CheckMaxScore();
+
         Destroy(gameObject);
+    }
+
+    public void ResetHP()
+    {
+        healthSystem.currentHealth = healthSystem.maxHealth;
+        healthBar.SetHealth(healthSystem.currentHealth);
     }
 
     private void OnTriggerEnter(Collider other)

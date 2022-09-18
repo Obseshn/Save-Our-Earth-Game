@@ -41,7 +41,7 @@ public class Asteroid : Attacker
             Debug.Log("Child of asteroid created!");
         }
     }
-    protected override void DestroyAttacker()
+    public override void DestroyAttacker()
     {
         Debug.Log("Size of asteroid: " + sizeOfAsteroid);
         if (Random.Range(0, 3) == 1)
