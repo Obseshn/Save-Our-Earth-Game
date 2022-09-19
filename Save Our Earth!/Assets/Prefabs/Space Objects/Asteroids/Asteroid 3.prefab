@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 7477513279741518577}
   - component: {fileID: 1842865718408386639}
   - component: {fileID: 1996324616974876435}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Asteroid 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathSound: {fileID: 8300000, guid: 0a6920db059b2754fa731151f599a78a, type: 3}
   damage: 1
-  minMoveSpeed: 0.25
+  minMoveSpeed: 0.4
   minSizeOfAttacker: 0
   onMouseDownSound: {fileID: 8300000, guid: de7253a13f14cfd4ca09a222ef4d60aa, type: 3}
   destroyParticle: {fileID: 198738731738625552, guid: 21461e6c060baf044ac3e717ed4170cb, type: 3}

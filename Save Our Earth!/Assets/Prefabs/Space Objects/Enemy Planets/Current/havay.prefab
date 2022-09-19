@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 236521950648383455}
   - component: {fileID: 5955977754054597065}
   - component: {fileID: 8702674626601776413}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: havay
   m_TagString: Untagged
   m_Icon: {fileID: 0}

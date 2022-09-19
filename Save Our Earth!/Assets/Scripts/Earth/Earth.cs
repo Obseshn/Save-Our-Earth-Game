@@ -11,7 +11,7 @@ public class Earth : MonoBehaviour
     [SerializeField] private Material catastropheMaterial;
     [SerializeField] private CatastropheCounter catastropheCounter;
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private int startEarthHealth = 30;
+    [SerializeField] private int startEarthHealth = 5;
     [SerializeField] private AudioClip catastropheClip;
     [SerializeField] private GameObject gameoverMenu;
 
@@ -71,13 +71,16 @@ public class Earth : MonoBehaviour
 
         CheckMaxScore();
 
-        Destroy(gameObject);
+        /*Destroy(gameObject);*/
     }
 
     public void ResetHP()
     {
+        isOnCatastrophe = false;
+        earthMeshRenderer.materials = defaultMaterials;
+
         healthSystem.currentHealth = healthSystem.maxHealth;
-        healthBar.SetHealth(healthSystem.currentHealth);
+        healthBar.SetHealth(healthSystem.maxHealth);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -133,6 +136,7 @@ public class Earth : MonoBehaviour
     {
         healthSystem.OnObjectDied -= DestroyPlanet;
         healthSystem.OnObjectTakenDamage -= OnTakeDamageBehaviour;
+        catastropheCounter.OnCatastropheReady -= MakeCatastrophe;
     }
 
     public int GetEarthStartHealth()

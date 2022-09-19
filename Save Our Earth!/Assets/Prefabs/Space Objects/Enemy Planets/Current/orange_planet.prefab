@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8674830106682838542}
   - component: {fileID: 8339599743473247775}
   - component: {fileID: 5089534891939186765}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: orange_planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

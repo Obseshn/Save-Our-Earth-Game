@@ -21,8 +21,8 @@ public class HealthSystem
             return;
         }
 
-        OnObjectTakenDamage?.Invoke(); 
         currentHealth -= amountOfDamage;
+        OnObjectTakenDamage?.Invoke(); 
     }
 
     private void SendDieMessage()

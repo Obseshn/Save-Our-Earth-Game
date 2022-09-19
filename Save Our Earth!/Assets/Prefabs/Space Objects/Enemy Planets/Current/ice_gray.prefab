@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6961542692541894355}
   - component: {fileID: 7583257084067107372}
   - component: {fileID: 2495904613412935578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ice_gray
   m_TagString: Untagged
   m_Icon: {fileID: 0}

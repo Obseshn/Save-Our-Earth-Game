@@ -12,6 +12,8 @@ public class MainMenuCanvas : MonoBehaviour
 
     private void OnEnable()
     {
+        YandexGame.CloseVideoEvent += Reward;
+
         YandexGame.GetDataEvent += OnGotData;
         colorPicker = ColorPickerTriangle.Instance.gameObject;
         if (YandexGame.savesData.playerMaxScore > 0)
@@ -39,17 +41,8 @@ public class MainMenuCanvas : MonoBehaviour
     {
         if (rewardIndex == 0)
         {
-            if (colorPicker == null)
-            {
-                colorPicker = ColorPickerTriangle.Instance.gameObject;
-                
-            }
-            else
-            {
-                Debug.Log("Color picker wasn't null");
-                colorPicker.SetActive(true);
-            }
-            
+            Debug.Log("Reward 0");
+            colorPicker.SetActive(true);
         }
     }
 

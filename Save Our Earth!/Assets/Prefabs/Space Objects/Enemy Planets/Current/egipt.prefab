@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1199934045508865250}
   - component: {fileID: 1758985797544854868}
   - component: {fileID: 3816416287259245017}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: egipt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

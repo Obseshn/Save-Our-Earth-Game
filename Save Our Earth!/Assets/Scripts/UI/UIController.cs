@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Text earthHealthText;
 
     [SerializeField] private Image catastropheMenu;
+    [SerializeField] private GameObject gameOverMenu;
     private Earth earth;
 
 
@@ -25,6 +26,7 @@ public class UIController : MonoBehaviour
         
         OnAddScore += ChangeScoreText;
 
+        YandexGame.CloseVideoEvent += Reward;
 
         earth = FindObjectOfType<Earth>();
         earth.OnCatastropheStartedOrFinished += ShowOrHideCatastropheMenu;
@@ -36,18 +38,20 @@ public class UIController : MonoBehaviour
         scoreText.text = "Удачной игры!";
     }
 
-    public void Reward(string rewardName)
+    public void Reward(int rewardID)
     {
-        if (rewardName == "ResetEarthHP")
+        if (rewardID == 1)
         {
-            FindObjectOfType<Earth>().ResetHP();
-            Collider[] nearestEnemies = Physics.OverlapSphere(transform.position, 5f, enemyLayer);
+            Earth earth = FindObjectOfType<Earth>();
+            earth.ResetHP();
+            gameOverMenu.SetActive(false);
+            Collider[] nearestEnemies = Physics.OverlapSphere(earth.transform.position, 15f, enemyLayer);
             foreach (var enemy in nearestEnemies)
             {
                 enemy.GetComponent<Attacker>().DestroyAttacker();
             }
         }
-        if (rewardName == "KillAllEnemies")
+        if (rewardID == 2)
         {
             Attacker[] enemies = FindObjectsOfType<Attacker>();
             foreach (var enemy in enemies)

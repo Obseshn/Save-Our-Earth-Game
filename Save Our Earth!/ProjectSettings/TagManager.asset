@@ -7,11 +7,12 @@ TagManager:
   - Enemy
   - Health Canvas
   - Earth
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
