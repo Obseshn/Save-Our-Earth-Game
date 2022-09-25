@@ -23,7 +23,6 @@ public class Attacker : MonoBehaviour
 
     public virtual void MoveToTheWorldCenter()
     {
-        Debug.Log(transform.name + " is moving to the center! " + "Speed : " + moveSpeed);
         transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, moveSpeed * Time.deltaTime);
     }
 

@@ -21,7 +21,7 @@ MonoBehaviour:
   staticRBTInGame: 0
   LocalizationEnable: 1
   callingLanguageCheck: 0
-  translateMethod: 2
+  translateMethod: 0
   CSVFileTranslate:
     format: 0
     name: TranslateCSV
@@ -54,7 +54,8 @@ MonoBehaviour:
     de: 0
     hi: 0
   fonts:
-    defaultFont: []
+    defaultFont:
+    - {fileID: 12800000, guid: c3ac60e5893f2a941b647879dc8c3355, type: 3}
     ru: []
     en: []
     tr: []

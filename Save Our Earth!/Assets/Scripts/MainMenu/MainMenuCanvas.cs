@@ -9,18 +9,18 @@ public class MainMenuCanvas : MonoBehaviour
     private GameObject colorPicker;
     [SerializeField] private Text playerBestScoreText;
     [SerializeField] private LeaderboardYG leaderBoard;
+    private SoundManager soundManager;
+    [SerializeField] private GameObject[] AuthDisableGameobjects;
+    [SerializeField] private GameObject[] AuthEnableGameobjects;
 
     private void OnEnable()
     {
         YandexGame.CloseVideoEvent += Reward;
 
         YandexGame.GetDataEvent += OnGotData;
-        colorPicker = ColorPickerTriangle.Instance.gameObject;
-        if (YandexGame.savesData.playerMaxScore > 0)
-        {
-            leaderBoard.NewScore(YandexGame.savesData.playerMaxScore);
-        }
-        leaderBoard.UpdateLB();
+        
+        
+        
     }
 
     private void OnDisable()
@@ -30,6 +30,36 @@ public class MainMenuCanvas : MonoBehaviour
     private void Start()
     {
         playerBestScoreText.text = YandexGame.savesData.playerMaxScore.ToString();
+        soundManager = SoundManager.Instance;
+
+        if (!YandexGame.auth)
+        {
+            foreach (var obj in AuthDisableGameobjects)
+            {
+                obj.SetActive(false);
+            }
+           
+        }
+        else
+        {
+            foreach (var obj in AuthEnableGameobjects)
+            {
+                obj.SetActive(false);
+            }
+        }
+        colorPicker = ColorPickerTriangle.Instance.gameObject;
+        colorPicker.SetActive(false);
+
+        /*if (YandexGame.savesData.playerMaxScore > 0)
+        {
+            leaderBoard.NewScore(YandexGame.savesData.playerMaxScore);
+        }
+        leaderBoard.UpdateLB();*/
+    }
+
+    public void PlayButtonSound()
+    {
+        soundManager.PlayButtonSound();
     }
 
     private void OnGotData()
@@ -46,9 +76,14 @@ public class MainMenuCanvas : MonoBehaviour
         }
     }
 
+    public void ActivateColorPicker()
+    {
+        YandexGame.RewVideoShow(0);
+    }
     public void StartGame()
     {
         colorPicker.SetActive(false);
+        YandexGame.FullscreenShow();
         SceneManager.LoadScene("GamePlay");
     }
 }

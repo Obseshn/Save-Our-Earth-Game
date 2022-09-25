@@ -55,6 +55,8 @@ namespace YG
             rt = (RectTransform)transform.GetChild(0);
             rt.GetComponent<RawImage>().color = Color.clear;
             rt.pivot = new Vector2(0, 1);
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
         }
 
         private void OnEnable()

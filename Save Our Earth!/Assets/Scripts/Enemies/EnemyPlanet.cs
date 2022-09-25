@@ -8,7 +8,7 @@ public class EnemyPlanet : Attacker
 
     private void OnEnable()
     {
-        healthSystem = new HealthSystem(Random.Range(5, 10));
+        healthSystem = new HealthSystem(Random.Range(4, 8));
         transform.localScale = SizeChanger.GetRandomChangeSize(minSizeOfAttacker, minSizeOfAttacker * 2);
     }
     private void Update()

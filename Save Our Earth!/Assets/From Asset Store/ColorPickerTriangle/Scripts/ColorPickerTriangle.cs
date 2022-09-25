@@ -42,7 +42,6 @@ public class ColorPickerTriangle : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        gameObject.SetActive(false);
     }
 
     private void OnEnable()

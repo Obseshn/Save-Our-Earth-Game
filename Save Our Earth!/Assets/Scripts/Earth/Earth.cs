@@ -55,10 +55,11 @@ public class Earth : MonoBehaviour
     private void CheckMaxScore()
     {
         int currentMaxScore = YandexGame.savesData.playerMaxScore;
-        if (currentMaxScore < FindObjectOfType<UIController>().GetScore())
+        int userBestScore = FindObjectOfType<UIController>().GetScore();
+        if (currentMaxScore < userBestScore)
         {
-            YandexGame.savesData.playerMaxScore = FindObjectOfType<UIController>().GetScore();
-            YandexGame.NewLeaderboardScores("Best Players", FindObjectOfType<UIController>().GetScore());
+            YandexGame.savesData.playerMaxScore = userBestScore;
+            YandexGame.NewLeaderboardScores("BestPlayers", userBestScore);
             YandexGame.SaveProgress();
         }
     }

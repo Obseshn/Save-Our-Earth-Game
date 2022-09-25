@@ -35,7 +35,6 @@ public class UIController : MonoBehaviour
         
 
         scoreCounter = 0;
-        scoreText.text = "Удачной игры!";
     }
 
     public void Reward(int rewardID)
