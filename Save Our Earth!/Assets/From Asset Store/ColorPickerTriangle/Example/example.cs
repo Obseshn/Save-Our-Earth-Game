@@ -18,7 +18,7 @@ public class example : MonoBehaviour {
     {
         if (isPaint)
         {
-            mat.color = CP.TheColor;
+            /*mat.color = CP.TheColor;*/
         }
     }
 

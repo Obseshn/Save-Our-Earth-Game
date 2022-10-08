@@ -5,11 +5,8 @@ public class ColorPickerTriangle : MonoBehaviour {
     public static ColorPickerTriangle Instance;
 
 
-    [SerializeField] private Camera cameraPrefab;
-    private Camera mainMenuCam;
-    private Color cameraBGColor;
 
-    public Color TheColor = Color.cyan;
+    public static Color TheColor = Color.cyan;
 
     const float MainRadius = .8f;
     const float CRadius = .5f;
@@ -31,6 +28,7 @@ public class ColorPickerTriangle : MonoBehaviour {
 
     private bool MousePressed = false;
 
+
 	// Use this for initialization
 	void Awake () {
         if (Instance == null)
@@ -44,7 +42,7 @@ public class ColorPickerTriangle : MonoBehaviour {
         }
     }
 
-    private void OnEnable()
+    private void Start()
     {
         float h, s, v;
         Color.RGBToHSV(TheColor, out h, out s, out v);
@@ -53,16 +51,13 @@ public class ColorPickerTriangle : MonoBehaviour {
         RPoints = new Vector3[3];
         SetTrianglePoints();
         TMesh = Triangle.GetComponent<MeshFilter>().mesh;
-        mainMenuCam = FindObjectOfType<Camera>();
         SetNewColor(TheColor);
     }
 
-
-
     // Update is called once per frame
     void Update () {
-        //CheckTrianglePosition();
-        //CheckCirclePosition();
+        /*CheckTrianglePosition();
+        CheckCirclePosition();*/
 
         if (!MousePressed)
         {
@@ -170,7 +165,7 @@ public class ColorPickerTriangle : MonoBehaviour {
         Color c = (CurBary.y > .9999) ? Color.black : Color.HSVToRGB(h, CurBary.x / (1f - CurBary.y), 1f - CurBary.y);
         TheColor = c;
         TheColor.a = 1f;
-        ChangeBGColor(c);
+        ChangeMCamColor(c);
     }
 
     private void ChangeTriangleColor(Color c)
@@ -210,13 +205,8 @@ public class ColorPickerTriangle : MonoBehaviour {
         RPoints[2] = new Vector3(-s, -c, 0) * TRadius;
     }
 
-    public void ChangeBGColor(Color newColor)
+    private void ChangeMCamColor(Color color)
     {
-        cameraBGColor = newColor;
-        cameraPrefab.backgroundColor = cameraBGColor;
-        if (mainMenuCam != null)
-        {
-            mainMenuCam.backgroundColor = cameraBGColor;
-        }
+        Camera.main.backgroundColor = color;
     }
 }

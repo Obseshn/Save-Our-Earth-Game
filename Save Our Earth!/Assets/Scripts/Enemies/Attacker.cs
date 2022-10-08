@@ -16,8 +16,7 @@ public class Attacker : MonoBehaviour
     private void Start()
     {
         healthSystem.OnObjectDied += DestroyAttacker;
-        healthSystem.OnObjectTakenDamage += OnTakeDamageBehaviour;
-        
+        Debug.Log(deathSound.name);
         moveSpeed = UnityEngine.Random.Range(minMoveSpeed, minMoveSpeed * 3);
     }
 
@@ -26,16 +25,11 @@ public class Attacker : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, moveSpeed * Time.deltaTime);
     }
 
-    protected virtual void OnTakeDamageBehaviour()
-    {
-        Debug.Log(transform.name + " taken damage!");
-    }
     public virtual void DestroyAttacker()
     {
         OnAttackerDied?.Invoke();
         destroyParticle.Play();
         Instantiate(destroyParticle, transform.position, Quaternion.identity);
-        Debug.Log(transform.name + " has been destroyed!");
         SoundManager.Instance.PlaySound(deathSound);
         Destroy(gameObject);
     }
@@ -43,7 +37,6 @@ public class Attacker : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Player hits attacker!");
         SoundManager.Instance.PlayUISound(onMouseDownSound);
         healthSystem.TakeDamage(1);
     }
@@ -51,6 +44,5 @@ public class Attacker : MonoBehaviour
     private void OnDisable()
     {
         healthSystem.OnObjectDied -= DestroyAttacker;
-        healthSystem.OnObjectTakenDamage -= OnTakeDamageBehaviour;
     }
 }

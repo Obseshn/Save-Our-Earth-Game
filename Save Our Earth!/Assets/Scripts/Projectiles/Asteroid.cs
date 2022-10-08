@@ -38,12 +38,10 @@ public class Asteroid : Attacker
         {
             Asteroid newAsteroid = Instantiate(this, transform.position, Quaternion.identity);
             newAsteroid.ChangeStagesOfAsteroid(Random.Range(sizeOfAsteroid - 1, sizeOfAsteroid - 0.5f));
-            Debug.Log("Child of asteroid created!");
         }
     }
     public override void DestroyAttacker()
     {
-        Debug.Log("Size of asteroid: " + sizeOfAsteroid);
         if (Random.Range(0, 3) == 1)
         {
             base.DestroyAttacker();
@@ -64,7 +62,6 @@ public class Asteroid : Attacker
         {
             SpawnChildAsteroids((int)sizeOfAsteroid);
         }
-        Debug.Log("Size: " + sizeOfAsteroid);
         base.DestroyAttacker();
     }
 }

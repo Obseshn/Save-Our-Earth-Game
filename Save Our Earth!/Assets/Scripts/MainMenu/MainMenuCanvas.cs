@@ -9,7 +9,6 @@ public class MainMenuCanvas : MonoBehaviour
     private GameObject colorPicker;
     [SerializeField] private Text playerBestScoreText;
     [SerializeField] private LeaderboardYG leaderBoard;
-    private SoundManager soundManager;
     [SerializeField] private GameObject[] AuthDisableGameobjects;
     [SerializeField] private GameObject[] AuthEnableGameobjects;
 
@@ -18,9 +17,6 @@ public class MainMenuCanvas : MonoBehaviour
         YandexGame.CloseVideoEvent += Reward;
 
         YandexGame.GetDataEvent += OnGotData;
-        
-        
-        
     }
 
     private void OnDisable()
@@ -30,7 +26,6 @@ public class MainMenuCanvas : MonoBehaviour
     private void Start()
     {
         playerBestScoreText.text = YandexGame.savesData.playerMaxScore.ToString();
-        soundManager = SoundManager.Instance;
 
         if (!YandexGame.auth)
         {
@@ -49,22 +44,25 @@ public class MainMenuCanvas : MonoBehaviour
         }
         colorPicker = ColorPickerTriangle.Instance.gameObject;
         colorPicker.SetActive(false);
-
-        /*if (YandexGame.savesData.playerMaxScore > 0)
-        {
-            leaderBoard.NewScore(YandexGame.savesData.playerMaxScore);
-        }
-        leaderBoard.UpdateLB();*/
     }
 
+    public void UpdateLB()
+    {
+        leaderBoard.UpdateLB();
+    }
     public void PlayButtonSound()
     {
-        soundManager.PlayButtonSound();
+        SoundManager.Instance.PlayButtonSound();
     }
 
     private void OnGotData()
     {
         playerBestScoreText.text = YandexGame.savesData.playerMaxScore.ToString();
+        if (YandexGame.savesData.playerMaxScore > 0)
+        {
+            leaderBoard.NewScore(YandexGame.savesData.playerMaxScore);
+        }
+        leaderBoard.UpdateLB();
     }
 
     public void Reward(int rewardIndex)

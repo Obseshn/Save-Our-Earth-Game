@@ -18,12 +18,12 @@ public class Earth : MonoBehaviour
     private HealthSystem healthSystem;
     private CosmicObjectsRotator cosmicObjectsRotator;
     
-    private bool isOnCatastrophe = false;
+    public bool isOnCatastrophe = false;
     private MeshRenderer earthMeshRenderer;
     private Material[] defaultMaterials;
 
     private readonly int catastropheDamage  = 3;
-    
+    public static Action OnCatastropheStopped;
     
     private void Start()
     {
@@ -103,6 +103,7 @@ public class Earth : MonoBehaviour
                 isOnCatastrophe = false;
                 earthMeshRenderer.materials = defaultMaterials;
                 Debug.Log("Catastrophe has been stopped!");
+                OnCatastropheStopped?.Invoke();
                 OnCatastropheStartedOrFinished?.Invoke();
             }
         }
@@ -131,6 +132,8 @@ public class Earth : MonoBehaviour
         if (isOnCatastrophe)
         {
             healthSystem.TakeDamage(catastropheDamage);
+            isOnCatastrophe = false;
+            OnCatastropheStartedOrFinished?.Invoke();
         }
     }
     private void OnDisable()

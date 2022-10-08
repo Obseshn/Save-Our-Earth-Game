@@ -10,6 +10,11 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioClip onButtonPressedSound;
 
+    private static bool isMute = false;
+    
+
+    public static float currentMasterVolume = 0.5f;
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,15 +27,26 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnEnable()
+    {
+        if (!isMute)
+        {
+            musicSource.clip = Resources.Load<AudioClip>("BGMusic");
+            musicSource.Play();
+        }
+    }
+
     public void PlaySound(AudioClip clip)
     {
         effectSource.PlayOneShot(clip);
     }
 
-    public void ChangeMasterVolume(float value)
+    public static void ChangeMasterVolume(float value)
     {
         AudioListener.volume = value;
+        currentMasterVolume = value;
     }
+
 
     public void ToggleEffectsAudio()
     {

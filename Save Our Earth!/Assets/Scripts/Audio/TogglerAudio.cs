@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class TogglerAudio : MonoBehaviour
 {
-    [SerializeField] private bool musicAudio, effectsAudio, uiAudio;
+    [SerializeField] private bool isMute;
 
     public void Toggle()
     {
-        if (musicAudio)
+        if (isMute)
         {
-            SoundManager.Instance.ToggleMusicAudio();
+            AudioListener.volume = 0;
+            SoundManager.currentMasterVolume = 0;
         }
-        if (effectsAudio)
+        else
         {
-            SoundManager.Instance.ToggleEffectsAudio();
-        }
-        if (uiAudio)
-        {
-            SoundManager.Instance.ToggleUIAudio();
+            AudioListener.volume = FindObjectOfType<VolumeSlider>().GetSliderValue();
         }
     }
 }

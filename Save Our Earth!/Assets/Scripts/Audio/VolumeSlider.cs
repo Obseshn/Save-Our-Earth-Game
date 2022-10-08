@@ -6,7 +6,14 @@ public class VolumeSlider : MonoBehaviour
     [SerializeField] private Slider volumeSlider;
     private void Start()
     {
-        SoundManager.Instance.ChangeMasterVolume(volumeSlider.value);
-        volumeSlider.onValueChanged.AddListener(val => SoundManager.Instance.ChangeMasterVolume(val));
+        volumeSlider.value = SoundManager.currentMasterVolume;
+        SoundManager.ChangeMasterVolume(volumeSlider.value);
+        volumeSlider.onValueChanged.AddListener(val => SoundManager.ChangeMasterVolume(val));
     }
+
+    public float GetSliderValue()
+    {
+        return volumeSlider.value;
+    }
+
 }

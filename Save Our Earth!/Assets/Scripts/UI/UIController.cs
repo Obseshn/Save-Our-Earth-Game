@@ -16,14 +16,15 @@ public class UIController : MonoBehaviour
     [SerializeField] private Image catastropheMenu;
     [SerializeField] private GameObject gameOverMenu;
     private Earth earth;
-
+   
 
     
 
     private void Start()
     {
         Attacker.OnAttackerDied += AddScore;
-        
+        Earth.OnCatastropheStopped += AddScore;
+
         OnAddScore += ChangeScoreText;
 
         YandexGame.CloseVideoEvent += Reward;
@@ -49,6 +50,9 @@ public class UIController : MonoBehaviour
             {
                 enemy.GetComponent<Attacker>().DestroyAttacker();
             }
+            gameOverMenu.SetActive(false);
+            catastropheMenu.gameObject.SetActive(false);
+            earth.isOnCatastrophe = false;
         }
         if (rewardID == 2)
         {
@@ -59,10 +63,14 @@ public class UIController : MonoBehaviour
             }
         }
     }
+
+    public void PlayButtonSound()
+    {
+        SoundManager.Instance.PlayButtonSound();
+    }
     public static void AddScore()
     {
         scoreCounter += 1;
-        Debug.Log("Add score exist!");
         OnAddScore?.Invoke(scoreCounter);
     }
 
@@ -79,8 +87,11 @@ public class UIController : MonoBehaviour
     private void OnDisable()
     {
         Attacker.OnAttackerDied -= AddScore;
+        Earth.OnCatastropheStopped -= AddScore;
 
         OnAddScore -= ChangeScoreText;
+
+        YandexGame.CloseVideoEvent -= Reward;
 
         earth.OnEarthTakenDamage -= ChangeEarthHealthText;
         earth.OnCatastropheStartedOrFinished -= ShowOrHideCatastropheMenu;
@@ -100,10 +111,7 @@ public class UIController : MonoBehaviour
 
     public void RestartLevel()
     {
-/*        ColorPickerTriangle colorPicker = FindObjectOfType<ColorPickerTriangle>();
-        Color bgColor = colorPicker.TheColor;*/
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-/*        colorPicker.SetNewColor(bgColor);*/
     }
 
     public void GoToMainMenu()
@@ -115,11 +123,16 @@ public class UIController : MonoBehaviour
         }
 
         SceneManager.LoadScene("MainMenu");
-
     }
 
     public int GetScore()
     {
         return scoreCounter;
+    }
+
+    public void ToggleSoundManager()
+    {
+        SoundManager.Instance.gameObject.SetActive(false);
+        SoundManager.Instance.gameObject.SetActive(true);
     }
 }
