@@ -65,6 +65,16 @@ public class MainMenuCanvas : MonoBehaviour
         leaderBoard.UpdateLB();
     }
 
+    public void SetZeroVolume()
+    {
+        AudioListener.volume = 0;
+    }
+
+    public void SetLastVolume()
+    {
+        AudioListener.volume = SoundManager.currentMasterVolume;
+    }
+
     public void Reward(int rewardIndex)
     {
         if (rewardIndex == 0)

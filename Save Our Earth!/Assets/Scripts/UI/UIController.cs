@@ -38,6 +38,16 @@ public class UIController : MonoBehaviour
         scoreCounter = 0;
     }
 
+    public void SetZeroVolume()
+    {
+        AudioListener.volume = 0;
+    }
+
+    public void SetLastVolume()
+    {
+        AudioListener.volume = SoundManager.currentMasterVolume;
+    }
+
     public void Reward(int rewardID)
     {
         if (rewardID == 1)
